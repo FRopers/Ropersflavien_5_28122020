@@ -1,0 +1,22 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css --style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FRopers/Ropersflavien_5_28122020.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FRopers/Ropersflavien_5_28122020/issues"
+  },
+  "homepage": "https://github.com/FRopers/Ropersflavien_5_28122020#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.3"
+  }
+}
