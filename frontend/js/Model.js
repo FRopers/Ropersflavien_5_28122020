@@ -1,0 +1,21 @@
+class Model {
+    static ajaxGet(apiUrl) {
+        return new Promise(function(resolve, reject) {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                console.log(xhr.readyState);
+                if (xhr.readyState === xhr.DONE) {
+                    if (xhr.status === 200) { 
+                        let content = JSON.parse(xhr.responseText)
+                        resolve(content);
+                    } else {
+                        reject(xhr);
+                    } 
+                }
+            }
+            xhr.open('GET', apiUrl, true);
+            xhr.send();
+        });
+    }    
+}
+

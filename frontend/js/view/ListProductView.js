@@ -1,36 +1,36 @@
-const product = document.getElementById("product");
-console.log(product);
-
-const request = new XMLHttpRequest();
-request.onreadystatechange = function() {
-    if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-        const response = JSON.parse(this.responseText);
-        const length = response.length;
-        for(i = 0; i < length; i++) {
+class ListProductView {
+    render(listProduct) {
+        const length = listProduct.length;
+        const product = document.getElementById("product");
+        for(let i = 0; i < length; i++) {
             let card = document.createElement("div");
             card.classList.add("card");
+            card.classList.add("col-md-5");
+            card.classList.add("m-3");
+            let lien = document.createElement("a");
+            lien.classList.add("stretched-link");
+            lien.href = "produit.html" + "?id="+ listProduct[i]._id;
             let image = document.createElement("img");
-            image.src = response[i].imageUrl;
+            image.src = listProduct[i].imageUrl;
             image.classList.add("card-img-top");
             let cardBody = document.createElement("div");
             cardBody.classList.add("card-body");
             let cardTitle = document.createElement("h2");
             cardTitle.classList.add("card-title");
-            cardTitle.textContent = response[i].name;
+            cardTitle.textContent = listProduct[i].name;
             let cardDescription = document.createElement("p");
             cardDescription.classList.add("card-text");
-            cardDescription.textContent = response[i].description;
+            cardDescription.textContent = listProduct[i].description;
             let cardPrice = document.createElement("p");
             cardPrice.classList.add("card-text");
-            cardPrice.textContent = response[i].price;
+            cardPrice.textContent = listProduct[i].price/100 +"€";
             card.append(image);
             card.append(cardBody);
             cardBody.append(cardTitle);
             cardBody.append(cardDescription);
             cardBody.append(cardPrice);
+            card.append(lien);
             product.append(card);
         }
-    }
-};
-request.open("GET", "http://localhost:3000/api/teddies")
-request.send();
+    } 
+}
