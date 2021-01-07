@@ -1,6 +1,6 @@
 class ProductListView {
     render(productList) {
-        const product = document.getElementById("product");
+        let product = document.getElementById("product");
         for(let i = 0; i < productList.length; i++){
             product.innerHTML += this.renderOneTeddy(productList[i]);
         }
