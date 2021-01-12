@@ -3,6 +3,8 @@ class ProductDetailView {
         let product_selector = document.getElementById("product_selector");
         product_selector.innerHTML += this.renderChoiceProduct(productChoice);
         this.renderColorProduct(productChoice);
+        this.createCartArrayInLocalStorage();
+        this.sendPoductChoice(productChoice);
     }
 
     renderChoiceProduct(productChoice) {
@@ -37,5 +39,24 @@ class ProductDetailView {
             <option value="${color[i]}">${color[i]}</option>`;
             list.innerHTML += content;
         }
+    }
+
+    createCartArrayInLocalStorage() {
+        if (localStorage.getItem("cart") === null) {
+            var array = [];
+            localStorage.setItem("cart", JSON.stringify(array));
+        }
+    }
+
+    sendPoductChoice(productChoice) {
+        var array = JSON.parse(localStorage.getItem("cart"));
+        let button = document.getElementById("send-cart");
+        button.addEventListener("click", function() {
+        let value = document.getElementById("color-select").value;
+        productChoice.colors = value;
+        array.push(productChoice)
+        localStorage.setItem("cart", JSON.stringify(array));
+        alert("Ce produit à été ajouté à votre panier");
+        });
     }
 }
