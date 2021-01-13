@@ -17,4 +17,10 @@ class Controller {
         let view = new ProductCartView;
         view.render();
     }
+
+    renderformAndProductChoice(contact, productSent) {
+        let model = new Model;
+        model.ajaxPost("http://localhost:3000/api/teddies/", contact, productSent)
+        
+    }
 }

@@ -1,7 +1,8 @@
 class ProductCartView {
     render() {
-         this.renderOneProductChoice();
-         this.DeleteOneProductInCart();
+        this.renderOneProductChoice();
+        this.DeleteOneProductInCart();
+        this.confirmSending(); 
     }
 
     renderProductCart(productChoice, locationInArray) {
@@ -42,5 +43,42 @@ class ProductCartView {
         for (let i = 0; i < array.length; i++) {        
         cart.innerHTML += this.renderProductCart(array[i], i);
         }
+    }
+
+    send(contact,productSent) {
+        let controller = new Controller;
+        controller.renderformAndProductChoice(contact,productSent);
+    }
+
+    confirmSending() {
+        let button = document.getElementById("send-server");
+        button.addEventListener("click", function(event){
+            event.preventDefault();
+            let view = new ProductCartView;
+            let contact = view.takeContactFormContent();
+            let productSent = view.takeProcuctCart();
+            view.send(contact,productSent);
+        });
+    }
+
+    takeContactFormContent() {
+
+        let contact = {
+            firstname: document.getElementById("firstname").value,
+            lastName: document.getElementById("lastname").value,
+            address: document.getElementById("address").value,
+            city: document.getElementById("city").value,
+            email: document.getElementById("email").value
+        }
+        return contact;
+    }
+
+    takeProcuctCart() {
+        let productSent = [];
+        let array = JSON.parse(localStorage.getItem("cart"));
+        for (let i = 0; i < array.length; i++) {        
+            productSent.push(array[i]._id);
+        }
+        return productSent;
     }
 }

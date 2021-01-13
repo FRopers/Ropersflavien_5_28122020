@@ -15,6 +15,6 @@ class Model {
             xhr.open('GET', apiUrl, true);
             xhr.send();
         });
-    }  
+    }
 }
 
