@@ -41,7 +41,7 @@
   <div class="container">
     <div class="row">
         <div class="col">
-            
+          <p>commande:<span id="order-confirmation"></span></p>          
         </div>
     </div>
   </div>
@@ -59,7 +59,13 @@
     </div>
   </div>
 
-  <script src="js/api.js"></script>
+  <script src="js/Model.js"></script>
+  <script src="js/view/ProductOrderView.js"></script>
+  <script src="js/Controller.js"></script>
+  <script>
+    let controller = new Controller;
+    controller.launchProductOrderPage();
+  </script>
 </body>
 
 </html>

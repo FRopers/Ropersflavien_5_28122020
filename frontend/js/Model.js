@@ -16,5 +16,23 @@ class Model {
             xhr.send();
         });
     }
-}
 
+    static ajaxPost(apiUrl, contact, products) {
+        return new Promise(function(resolve, reject) {
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", apiUrl, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify({contact, products}));
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === xhr.DONE) {
+                    if (xhr.status === 201) { 
+                        let content = (xhr.responseText)
+                        resolve(content);
+                    } else {
+                        reject(xhr);
+                    } 
+                }
+            }
+        });
+    }
+}

@@ -26,7 +26,7 @@ class ProductCartView {
         return content;
     }
 
-    DeleteOneProductInCart() {
+    DeleteOneProductInCart() { /*CreateDeleteProductButton*/
         let array = JSON.parse(localStorage.getItem("cart"));
         for (let i = 0; i < array.length; i++) {        
          let button = document.getElementById("delete-" + i);
@@ -45,9 +45,10 @@ class ProductCartView {
         }
     }
 
-    send(contact,productSent) {
+    send(contact,products) {
         let controller = new Controller;
-        controller.renderformAndProductChoice(contact,productSent);
+        controller.sendContactAndCart(contact, products);
+        window.location.href = "commande.html";
     }
 
     confirmSending() {
@@ -56,15 +57,15 @@ class ProductCartView {
             event.preventDefault();
             let view = new ProductCartView;
             let contact = view.takeContactFormContent();
-            let productSent = view.takeProcuctCart();
-            view.send(contact,productSent);
+            let products = view.takeProcuctCart();
+            view.send(contact, products);
         });
     }
 
     takeContactFormContent() {
 
         let contact = {
-            firstname: document.getElementById("firstname").value,
+            firstName: document.getElementById("firstname").value,
             lastName: document.getElementById("lastname").value,
             address: document.getElementById("address").value,
             city: document.getElementById("city").value,
@@ -74,11 +75,11 @@ class ProductCartView {
     }
 
     takeProcuctCart() {
-        let productSent = [];
+        let products = [];
         let array = JSON.parse(localStorage.getItem("cart"));
         for (let i = 0; i < array.length; i++) {        
-            productSent.push(array[i]._id);
+            products.push(array[i]._id);
         }
-        return productSent;
+        return products;
     }
 }

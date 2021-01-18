@@ -18,9 +18,13 @@ class Controller {
         view.render();
     }
 
-    renderformAndProductChoice(contact, productSent) {
-        let model = new Model;
-        model.ajaxPost("http://localhost:3000/api/teddies/", contact, productSent)
-        
+    async sendContactAndCart(contact, products) {
+        let order = await Model.ajaxPost("http://localhost:3000/api/teddies/order", contact, products)
+        localStorage.setItem("order", order)
+    }
+    
+    launchProductOrderPage() {
+        let view = new ProductOrderView;
+        view.render();
     }
 }
