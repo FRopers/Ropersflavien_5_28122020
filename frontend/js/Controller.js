@@ -20,11 +20,16 @@ class Controller {
 
     async sendContactAndCart(contact, products) {
         let order = await Model.ajaxPost("http://localhost:3000/api/teddies/order", contact, products)
-        localStorage.setItem("order", order)
+        return order;
     }
     
-    launchProductOrderPage() {
+    async launchProductOrderPage() {
+        let contact = JSON.parse(localStorage.getItem("contact"));
+        let products = JSON.parse(localStorage.getItem("products"));
+        let order = await this.sendContactAndCart(contact, products);
+        order = JSON.parse(order);
+        console.log(order);
         let view = new ProductOrderView;
-        view.render();
+        view.render(order);
     }
 }

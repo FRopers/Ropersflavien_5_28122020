@@ -1,9 +1,11 @@
 class ProductCartView {
     render() {
         this.renderOneProductChoice();
-        this.DeleteOneProductInCart();
+        this.CreateDeleteProductButton();
         this.confirmSending(); 
     }
+
+    ////////// panier //////////
 
     renderProductCart(productChoice, locationInArray) {
         let content = `
@@ -26,7 +28,7 @@ class ProductCartView {
         return content;
     }
 
-    DeleteOneProductInCart() { /*CreateDeleteProductButton*/
+    CreateDeleteProductButton() {
         let array = JSON.parse(localStorage.getItem("cart"));
         for (let i = 0; i < array.length; i++) {        
          let button = document.getElementById("delete-" + i);
@@ -40,26 +42,42 @@ class ProductCartView {
 
     renderOneProductChoice() {
         let array = JSON.parse(localStorage.getItem("cart"));
+        let finalPrice = 0;
+        let cart = document.getElementById("cart");
         for (let i = 0; i < array.length; i++) {        
         cart.innerHTML += this.renderProductCart(array[i], i);
+        finalPrice += array[i].price;
         }
+        this.renderFinalPrice(finalPrice);
     }
 
-    send(contact,products) {
-        let controller = new Controller;
-        controller.sendContactAndCart(contact, products);
-        window.location.href = "commande.html";
+    renderFinalPrice(finalPrice) {
+        let price = document.getElementById("final-price");
+        let content = `
+        <div class="col-6">
+        </div>
+
+        <div class="col-5">
+            <h3>Total:</h3>
+        </div>
+
+        <div class="col-1">
+            <p>${finalPrice/100}€</p>
+        </div>`;
+
+        price.innerHTML =  content;
     }
+
+    ////////// Envoi formulaire et panier //////////
 
     confirmSending() {
         let button = document.getElementById("send-server");
-        button.addEventListener("click", function(event){
-            event.preventDefault();
-            let view = new ProductCartView;
-            let contact = view.takeContactFormContent();
-            let products = view.takeProcuctCart();
-            view.send(contact, products);
-        });
+        button.addEventListener("click", function(){
+            let contact = this.takeContactFormContent();
+            let products = this.takeProcuctCart();
+            localStorage.setItem("contact",JSON.stringify(contact));
+            localStorage.setItem("products",JSON.stringify(products));
+        }.bind(this));
     }
 
     takeContactFormContent() {
