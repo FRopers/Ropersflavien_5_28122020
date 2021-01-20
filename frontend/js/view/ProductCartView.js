@@ -9,20 +9,22 @@ class ProductCartView {
 
     renderProductCart(productChoice, locationInArray) {
         let content = `
-        <div class="col-2">
-            <img src="${productChoice.imageUrl}" alt="ours en peluche ${productChoice.name}" height="100" />
-        </div>
+        <div class="row mb-3 bg-white">
+            <div class="col-2 no-padding my-auto">
+                <img src="${productChoice.imageUrl}" alt="ours en peluche ${productChoice.name}" class="img-cart" />
+            </div>
 
-        <div class="col-9">
-            <h2>${productChoice.name}</h2> 
+            <div class="col-9">
+                <h2>${productChoice.name}</h2> 
 
-            <p>Couleur: ${productChoice.colors}</p>
+                <p>Couleur:<span class="font-weight-bold"> ${productChoice.colors}</span></p>
 
-            <button class="btn" type="submit" id="delete-${locationInArray}">supprimer</button>           
-        </div>
+                <p class="delete" id="delete-${locationInArray}">supprimer</p>           
+            </div>
 
-        <div class="col-1">
-            <p>${productChoice.price/100}€</p>
+            <div class="col-1 bg-white">
+                <p class="center">${productChoice.price/100}€</p>
+            </div>
         </div>`;
         
         return content;
@@ -58,11 +60,11 @@ class ProductCartView {
         </div>
 
         <div class="col-5">
-            <h3>Total:</h3>
+            <h3 class="center">Total:</h3>
         </div>
 
         <div class="col-1">
-            <p>${finalPrice/100}€</p>
+            <p class="center">${finalPrice/100}€</p>
         </div>`;
 
         price.innerHTML =  content;

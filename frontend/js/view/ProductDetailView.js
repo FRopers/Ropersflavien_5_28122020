@@ -9,7 +9,7 @@ class ProductDetailView {
 
     renderChoiceProduct(productChoice) {
         let content = `
-        <div class="card col">
+        <div class="card col no-padding">
             <img src="${productChoice.imageUrl}" alt="ours en peluche ${productChoice.name}" class="card-img-top" />
     
             <div class="card-body">

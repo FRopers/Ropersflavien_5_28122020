@@ -9,10 +9,10 @@ class ProductListView {
 
     renderOneTeddy(currentProduct) {
         let content = `
-        <div class="card col-md-5 m-4 text-center">
-            <img src="${currentProduct.imageUrl}" alt="ours en peluche ${currentProduct.name}" class="card-img-top"/>
+        <div class="card col-md-5 m-4 text-center hover no-padding">
+            <img src="${currentProduct.imageUrl}" alt="ours en peluche ${currentProduct.name}" class="card-img-top img-index"/>
     
-            <div class="card-body" height="100px">
+            <div class="card-body">
                 <h2 class="card-title">${currentProduct.name}</h2> 
     
                 <p class="card-text">${currentProduct.description}</p>
