@@ -13,7 +13,7 @@ class ProductDetailView {
             <img src="${productChoice.imageUrl}" alt="ours en peluche ${productChoice.name}" class="card-img-top" />
     
             <div class="card-body">
-                <h2 class="card-title">${productChoice.name}</h2> 
+                <h1 class="h2 card-title">${productChoice.name}</h1> 
     
                 <p class="card-text">${productChoice.description}</p>
 
