@@ -1,8 +1,13 @@
 class ProductCartView {
     render() {
-        this.renderOneProductChoice();
-        this.CreateDeleteProductButton();
-        this.confirmSending(); 
+        let array = JSON.parse(localStorage.getItem("cart"));
+        if (array === null || array.length === 0) {
+            this.displayEmptyCartMessage();
+        }else{
+            this.renderOneProductChoice();
+            this.CreateDeleteProductButton();
+            this.confirmSending(); 
+        }
     }
 
     ////////// panier //////////
@@ -10,11 +15,11 @@ class ProductCartView {
     renderProductCart(productChoice, locationInArray) {
         let content = `
         <div class="row mb-3 bg-white rounded">
-            <div class="col-12 col-md-5 col-lg-2 no-padding my-auto">
-                <img src="${productChoice.imageUrl}" alt="ours en peluche ${productChoice.name}" class="img-cart" />
+            <div class="col-3 col-lg-2 no-padding my-auto">
+                <img src="${productChoice.imageUrl}" alt="ours en peluche ${productChoice.name}" class="img-cart p-1" />
             </div>
 
-            <div class="col-12 col-md-5 col-lg-9">
+            <div class="col-7 col-lg-9">
                 <h2>${productChoice.name}</h2> 
 
                 <p>Couleur:<span class="font-weight-bold"> ${productChoice.colors}</span></p>
@@ -22,8 +27,8 @@ class ProductCartView {
                 <p class="delete" id="delete-${locationInArray}">supprimer</p>           
             </div>
 
-            <div class="col-12 col-md-2 col-lg-1 font-weight-bold">
-                <p class="center">${productChoice.price/100}€</p>
+            <div class="col-2 col-lg-1 font-weight-bold">
+                <p class="center h5">${productChoice.price/100}€</p>
             </div>
         </div>`;
         
@@ -45,12 +50,21 @@ class ProductCartView {
     renderOneProductChoice() {
         let array = JSON.parse(localStorage.getItem("cart"));
         let finalPrice = 0;
-        let cart = document.getElementById("cart");
+        let cart = document.getElementById("cart-product");
         for (let i = 0; i < array.length; i++) {        
         cart.innerHTML += this.renderProductCart(array[i], i);
         finalPrice += array[i].price;
         }
         this.renderFinalPrice(finalPrice);
+    }
+
+    displayEmptyCartMessage() {
+        let message = document.getElementById("cart");
+        let content = `
+        <div class="col text-center">
+            <h1>Votre panier est vide</h1>
+        </div>`;
+        message.innerHTML = content;
     }
 
     renderFinalPrice(finalPrice) {
@@ -61,7 +75,7 @@ class ProductCartView {
         </div>
 
         <div class="col-2 col-lg-1 font-weight-bold">
-            <p class="center">${finalPrice/100}€</p>
+            <p class="center h4">${finalPrice/100}€</p>
         </div>`;
 
         price.innerHTML = content;

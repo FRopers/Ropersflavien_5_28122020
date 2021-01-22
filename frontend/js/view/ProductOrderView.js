@@ -4,7 +4,7 @@ class ProductOrderView {
         let orderConfirm = document.getElementById("order-confirmation");
         orderConfirm.innerHTML = order.orderId;
         this.renderFinalPrice(order);
-        /*localStorage.clear();*/
+        localStorage.clear();
     }
 
     renderFinalPrice(order) {

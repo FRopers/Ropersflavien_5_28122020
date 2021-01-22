@@ -9,7 +9,7 @@ class ProductDetailView {
 
     renderChoiceProduct(productChoice) {
         let content = `
-        <div class="card col no-padding">
+        <div class="card col-10 col-md-8 no-padding mx-auto">
             <img src="${productChoice.imageUrl}" alt="ours en peluche ${productChoice.name}" class="card-img-top" />
     
             <div class="card-body">
@@ -22,9 +22,9 @@ class ProductDetailView {
                 <select name="color" id="color-select">
                 </select>
 
-                <p class="card-text">${productChoice.price/100}€</p>
+                <p class="card-text h5 my-2">${productChoice.price/100}€</p>
 
-                <button class="btn btn-primary" type="submit" id="send-cart">Ajouter au panier</button>
+                <button class="btn btn-primary mt-2" type="submit" id="send-cart">Ajouter au panier</button>
             </div>
         </div>`;
 

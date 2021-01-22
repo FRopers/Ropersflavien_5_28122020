@@ -17,7 +17,6 @@
 .img { 
   &-index {
     height: 60%;
-    object-fit: cover;
     @media (min-width: 768px) and (max-width: 991.98px) {
       height: 50%;
     }
@@ -42,4 +41,34 @@
     text-decoration: underline;
     cursor: pointer;
   }
+}
+
+html {
+  font-size: 0.8rem;
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1rem;
+  }
+}
+
+.bg-header{
+  background-color: #f3e9f1;
+}
+
+.bg-footer {
+  background-color: #c6c6c6;
+}
+
+.bg-section {
+  background-color: #FAFAFA;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.test {
+  background-color: #eaeaea;
 }
