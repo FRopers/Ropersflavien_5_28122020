@@ -1,17 +1,41 @@
 class ProductCartView {
+    /* Récupère dans le localStorage les produits qui ont été ajouté au panier. 
+        Si aucun produit n'est présent, affiche un message disant que le panier est vide, sinon affiche les produits dans le panier.
+        Après validation du formulaire, envoie les données dans le localSorage */
     render() {
         let array = JSON.parse(localStorage.getItem("cart"));
         if (array === null || array.length === 0) {
             this.displayEmptyCartMessage();
-        }else{
+        } else {
             this.renderOneProductChoice();
             this.CreateDeleteProductButton();
             this.confirmSending(); 
         }
     }
 
-    ////////// panier //////////
+    /* Génère un code HTML disant que le panier est vide */
+    displayEmptyCartMessage() {
+        let message = document.getElementById("cart");
+        let content = `
+        <div class="col text-center">
+            <h1>Votre panier est vide</h1>
+        </div>`;
+        message.innerHTML = content;
+    }
 
+    /* Récupère dans le localStorage les produits qui ont été ajouté au panier et les injecte avec le prix total dans le panier */
+    renderOneProductChoice() {
+        let array = JSON.parse(localStorage.getItem("cart"));
+        let finalPrice = 0;
+        let cart = document.getElementById("cart-product");
+        for (let i = 0; i < array.length; i++) {        
+            cart.innerHTML += this.renderProductCart(array[i], i);
+            finalPrice += array[i].price;
+        }
+        this.renderFinalPrice(finalPrice);
+    }
+
+    /* Génère la structure HTML du produit présent dans le panier */
     renderProductCart(productChoice, locationInArray) {
         let content = `
         <div class="row mb-3 bg-white rounded">
@@ -35,38 +59,7 @@ class ProductCartView {
         return content;
     }
 
-    CreateDeleteProductButton() {
-        let array = JSON.parse(localStorage.getItem("cart"));
-        for (let i = 0; i < array.length; i++) {        
-         let button = document.getElementById("delete-" + i);
-         button.addEventListener("click", function() {
-            array.splice(i, 1);           
-            localStorage.setItem("cart", JSON.stringify(array));
-            document.location.reload();
-         });
-        }      
-    }
-
-    renderOneProductChoice() {
-        let array = JSON.parse(localStorage.getItem("cart"));
-        let finalPrice = 0;
-        let cart = document.getElementById("cart-product");
-        for (let i = 0; i < array.length; i++) {        
-        cart.innerHTML += this.renderProductCart(array[i], i);
-        finalPrice += array[i].price;
-        }
-        this.renderFinalPrice(finalPrice);
-    }
-
-    displayEmptyCartMessage() {
-        let message = document.getElementById("cart");
-        let content = `
-        <div class="col text-center">
-            <h1>Votre panier est vide</h1>
-        </div>`;
-        message.innerHTML = content;
-    }
-
+    /* Génère et injecte la structure HTML du cout total du panier */
     renderFinalPrice(finalPrice) {
         let price = document.getElementById("final-price");
         let content = `
@@ -81,20 +74,32 @@ class ProductCartView {
         price.innerHTML = content;
     }
 
-    ////////// Envoi formulaire et panier //////////
+    /* Supprime les produits choisit dans le panier */
+    CreateDeleteProductButton() {
+        let array = JSON.parse(localStorage.getItem("cart"));
+        for (let i = 0; i < array.length; i++) {        
+            let button = document.getElementById("delete-" + i);
+            button.addEventListener("click", function() {
+                array.splice(i, 1);           
+                localStorage.setItem("cart", JSON.stringify(array));
+                document.location.reload();
+            });
+        }      
+    }
 
+    /* Envoie dans le localSorage les valeurs remplies dans le formulaire ainsi que les produits présent dans le panier */
     confirmSending() {
         let button = document.getElementById("send-server");
         button.addEventListener("click", function(){
             let contact = this.takeContactFormContent();
-            let products = this.takeProcuctCart();
+            let products = this.takeProductCart();
             localStorage.setItem("contact",JSON.stringify(contact));
             localStorage.setItem("products",JSON.stringify(products));
         }.bind(this));
     }
 
+    /* Récupère les données saisies dans le formulaire */
     takeContactFormContent() {
-
         let contact = {
             firstName: document.getElementById("firstname").value,
             lastName: document.getElementById("lastname").value,
@@ -105,7 +110,8 @@ class ProductCartView {
         return contact;
     }
 
-    takeProcuctCart() {
+    /* Envoie dans un tableau l'id des produits présent dans le panier */
+    takeProductCart() {
         let products = [];
         let array = JSON.parse(localStorage.getItem("cart"));
         for (let i = 0; i < array.length; i++) {        

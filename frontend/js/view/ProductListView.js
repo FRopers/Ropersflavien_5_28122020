@@ -1,4 +1,5 @@
 class ProductListView {
+    /* Affiche chaque produits dans la page d'accueil*/
     render(productList) {
         let product = document.getElementById("product");
         for(let i = 0; i < productList.length; i++){
@@ -7,6 +8,7 @@ class ProductListView {
 
     }
 
+    /* Génère la structure HTML pour afficher les produits */
     renderOneTeddy(currentProduct) {
         let content = `
         <div class="card col-md-5 m-4 text-center hover no-padding">

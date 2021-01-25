@@ -1,12 +1,12 @@
 class ProductOrderView {
+    /* Affiche l'id et le prix total dans le message de validation de commande et vide le localStorage */
     render(order) {
-        console.log(order);
-        let orderConfirm = document.getElementById("order-confirmation");
-        orderConfirm.innerHTML = order.orderId;
+        this.renderOrderId(order);
         this.renderFinalPrice(order);
         localStorage.clear();
     }
 
+    /* Calcul le prix total et l'affiche */
     renderFinalPrice(order) {
         let content = document.getElementById("order-price");
         let finalPrice = 0;
@@ -14,5 +14,11 @@ class ProductOrderView {
             finalPrice += order.products[i].price; 
         }
         content.textContent = finalPrice/100;
+    }
+
+    /* Récupère l'id de commande et l'affiche */
+    renderOrderId(order) {
+        let orderConfirm = document.getElementById("order-confirmation");
+        orderConfirm.innerHTML = order.orderId;
     }
 }

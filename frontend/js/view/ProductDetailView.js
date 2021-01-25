@@ -1,4 +1,5 @@
 class ProductDetailView {
+    /* Affiche le produit sélectionné*/
     render(productChoice) {
         let product_selector = document.getElementById("product_selector");
         product_selector.innerHTML += this.renderChoiceProduct(productChoice);
@@ -7,6 +8,7 @@ class ProductDetailView {
         this.sendPoductChoice(productChoice);
     }
 
+    /* Génère la structure HTML du produit sélectionné */
     renderChoiceProduct(productChoice) {
         let content = `
         <div class="card col-10 col-md-8 no-padding mx-auto">
@@ -31,6 +33,7 @@ class ProductDetailView {
         return content;
     }
 
+    /* Récupère les couleurs du produit, génère une liste déroulante et y insère les couleurs */ 
     renderColorProduct(productChoice) {
         let color = productChoice.colors;
         let list = document.getElementById("color-select");
@@ -41,22 +44,24 @@ class ProductDetailView {
         }
     }
 
+    /* Création dans le localStorage du tableau servant à stocker les produit ajouté au panier */
     createCartArrayInLocalStorage() {
         if (localStorage.getItem("cart") === null) {
-            var array = [];
+            let array = [];
             localStorage.setItem("cart", JSON.stringify(array));
         }
     }
 
+    /* Envoi les caractéristiques du produit ajouté au panier dans le localStorage*/
     sendPoductChoice(productChoice) {
-        var array = JSON.parse(localStorage.getItem("cart"));
+        let array = JSON.parse(localStorage.getItem("cart"));
         let button = document.getElementById("send-cart");
         button.addEventListener("click", function() {
-        let value = document.getElementById("color-select").value;
-        productChoice.colors = value;
-        array.push(productChoice)
-        localStorage.setItem("cart", JSON.stringify(array));
-        alert("Ce produit à été ajouté à votre panier");
+            let value = document.getElementById("color-select").value;
+            productChoice.colors = value;
+            array.push(productChoice);
+            localStorage.setItem("cart", JSON.stringify(array));
+            alert("Ce produit à été ajouté à votre panier");
         });
     }
 }

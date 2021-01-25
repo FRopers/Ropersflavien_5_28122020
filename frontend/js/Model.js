@@ -1,4 +1,5 @@
 class Model {
+    /* Récupère le contenu de l'api */
     static ajaxGet(apiUrl) {
         return new Promise(function(resolve, reject) {
             let xhr = new XMLHttpRequest();
@@ -17,6 +18,7 @@ class Model {
         });
     }
 
+    /* Envoie le contenu du panier (formulaire et produit) et récupère la réponse de l'api */
     static ajaxPost(apiUrl, contact, products) {
         return new Promise(function(resolve, reject) {
             let xhr = new XMLHttpRequest();
