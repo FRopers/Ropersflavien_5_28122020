@@ -1,5 +1,5 @@
 class ProductDetailView {
-    /* Affiche le produit sélectionné*/
+    /* Affiche le produit sélectionné */
     render(productChoice) {
         let product_selector = document.getElementById("product_selector");
         product_selector.innerHTML += this.renderChoiceProduct(productChoice);
@@ -44,7 +44,7 @@ class ProductDetailView {
         }
     }
 
-    /* Création dans le localStorage du tableau servant à stocker les produit ajouté au panier */
+    /* Création dans le localStorage du tableau servant à stocker les produits ajoutés au panier */
     createCartArrayInLocalStorage() {
         if (localStorage.getItem("cart") === null) {
             let array = [];
@@ -52,7 +52,7 @@ class ProductDetailView {
         }
     }
 
-    /* Envoi les caractéristiques du produit ajouté au panier dans le localStorage*/
+    /* Envoie les caractéristiques du produit ajouté au panier dans le localStorage */
     sendPoductChoice(productChoice) {
         let array = JSON.parse(localStorage.getItem("cart"));
         let button = document.getElementById("send-cart");
