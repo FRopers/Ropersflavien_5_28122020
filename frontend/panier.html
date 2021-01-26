@@ -30,7 +30,7 @@
   </header>
 
   <section id="cart">
-    <div class="container bg-section" id="cart-product">
+    <div class="container" id="cart-product">
       <div class="row">
         <div class="col mb-5">
           <h1 class="text-center">Votre panier</h1>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="container">
-      <div class="row rounded text-dark test py-2" id="final-price">
+      <div class="row rounded text-dark bg-total py-2" id="final-price">
         <!--javascript-->
       </div>
 
@@ -48,7 +48,7 @@
         <div class="col col-md-5 mx-auto">
           <h2 class="text-center mb-4">Vos coordonnées</h2>
 
-          <form action="commande.html">
+          <form action="commande.html" method="GET">
             <div class="form-group">
               <label for="lastname">Nom</label>
               <input type="text" class="form-control" id="lastname" name="lastname" required />

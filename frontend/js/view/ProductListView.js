@@ -5,7 +5,6 @@ class ProductListView {
         for(let i = 0; i < productList.length; i++){
             product.innerHTML += this.renderOneTeddy(productList[i]);
         }
-
     }
 
     /* Génère la structure HTML pour afficher les produits */

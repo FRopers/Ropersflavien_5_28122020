@@ -1,5 +1,5 @@
 class Controller {
-    /* Récupère le tableau des produits et lance la fontion render permettant un affichage des différentes peluches sur la page d'accueil */
+    /* Récupère le tableau des produits et lance la fonction render permettant un affichage des différentes peluches sur la page d'accueil */
     async launchProductListPage() {
         let productList = await Model.ajaxGet("http://localhost:3000/api/teddies");
         let view = new ProductListView;
@@ -28,8 +28,8 @@ class Controller {
         return order;
     }
     
-    /* Récupère le contenu du panier et du formulaire dans le localStorage, lance et attend le retour de la fontion sendContactAndCart 
-    et lance la page commande avec les informations recueilllies */
+    /* Récupère le contenu du panier et du formulaire dans le localStorage, lance et attend le retour de la fonction sendContactAndCart 
+    et lance la page commande avec les informations recueillies */
     async launchProductOrderPage() {
         let contact = JSON.parse(localStorage.getItem("contact"));
         let products = JSON.parse(localStorage.getItem("products"));

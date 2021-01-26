@@ -23,7 +23,7 @@ class ProductCartView {
         message.innerHTML = content;
     }
 
-    /* Récupère dans le localStorage les produits qui ont été ajouté au panier et les injecte avec le prix total dans le panier */
+    /* Récupère dans le localStorage les produits qui ont été ajouté au panier et les injectent avec le prix total dans le panier */
     renderOneProductChoice() {
         let array = JSON.parse(localStorage.getItem("cart"));
         let finalPrice = 0;
@@ -74,7 +74,7 @@ class ProductCartView {
         price.innerHTML = content;
     }
 
-    /* Supprime les produits choisit dans le panier */
+    /* Supprime les produits choisis dans le panier */
     CreateDeleteProductButton() {
         let array = JSON.parse(localStorage.getItem("cart"));
         for (let i = 0; i < array.length; i++) {        
@@ -87,7 +87,7 @@ class ProductCartView {
         }      
     }
 
-    /* Envoie dans le localSorage les valeurs remplies dans le formulaire ainsi que les produits présent dans le panier */
+    /* Envoie dans le localSorage les valeurs remplies dans le formulaire ainsi que les produits présents dans le panier */
     confirmSending() {
         let button = document.getElementById("send-server");
         button.addEventListener("click", function(){
@@ -110,7 +110,7 @@ class ProductCartView {
         return contact;
     }
 
-    /* Envoie dans un tableau l'id des produits présent dans le panier */
+    /* Envoie dans un tableau l'id des produits présents dans le panier */
     takeProductCart() {
         let products = [];
         let array = JSON.parse(localStorage.getItem("cart"));
