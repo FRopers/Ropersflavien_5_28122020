@@ -9,7 +9,7 @@
 ### Notes ###
 
   Le projet nous mettait dans la peau d'un développeur front-end recruté par Orinoco, une entreprise de commerce en ligne. Le fondateur de l’entreprise, nommé Paul, 
-  nous demandait comme première mission, la création de la partie front-end d'un MVP qui avait pour but de démontrer le fonctionnement du site à des investisseurs.
+  nous demandait comme première mission, la création de la partie front-end d'un MVP qui avait pour but de démontrer le fonctionnement du site à ses investisseurs.
   
 ### Langages, Framework et Outils utilisés ###
 
