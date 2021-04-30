@@ -3,10 +3,12 @@ class ProductOrderView {
     render(order) {
         this.renderOrderId(order);
         this.renderFinalPrice(order);
-        localStorage.clear();
+        localStorage.removeItem('cart');
+        localStorage.removeItem('products');
+        localStorage.removeItem('contact');
     }
 
-    /* Calcul le prix total et l'affiche */
+    /* Calcul le prix total et l'affiche */S
     renderFinalPrice(order) {
         let content = document.getElementById("order-price");
         let finalPrice = 0;

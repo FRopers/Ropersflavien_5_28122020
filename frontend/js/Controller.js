@@ -34,7 +34,6 @@ class Controller {
         let contact = JSON.parse(localStorage.getItem("contact"));
         let products = JSON.parse(localStorage.getItem("products"));
         let order = await this.sendContactAndCart(contact, products);
-        order = JSON.parse(order);
         let view = new ProductOrderView;
         view.render(order);
     }
